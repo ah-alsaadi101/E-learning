@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import dj_database_url
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 from datetime import timedelta
 from pathlib import Path
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-load_dotenv()
+# load_dotenv()
 
 SECRET_KEY = os.getenv(
     'SECRET_KEY', 'django-insecure-32c1(1l%kzto11h%=)&s@d#0f8@gr1l+#5jlqgcnz(5t7-*kto')
