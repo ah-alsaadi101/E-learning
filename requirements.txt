@@ -49,4 +49,4 @@ isort==5.13.2
 # django-redis==5.4.0
 
 # Email Handling
-django-anymail==10.5  # Optional for advanced email
+# django-anymail==10.5  # Optional for advanced email
