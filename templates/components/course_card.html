@@ -1,7 +1,3 @@
-<!-- Reusable Components for EduLearn E-Learning Platform -->
-
-<!-- Course Card Component -->
-{% comment %} Usage: {% include 'components/course_card.html' with course=course show_enroll=true %} {% endcomment %}
 <div class="card course-card h-100 shadow-sm">
     {% if course.image %}
         <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
@@ -29,11 +25,9 @@
         </div>
 
         <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <i class="bi bi-star-fill text-warning me-1"></i>
-                <small class="text-muted">{{ course.average_rating|floatformat:1|default:"4.5" }}</small>
-                <small class="text-muted ms-2">({{ course.enrollments.count|default:0 }} students)</small>
-            </div>
+            <small class="text-muted">
+                <i class="bi bi-people me-1"></i>{{ course.enrollments.count }} students
+            </small>
             {% if course.price %}
                 <span class="fw-bold text-primary">${{ course.price }}</span>
             {% else %}
@@ -45,9 +39,13 @@
     {% if show_enroll %}
     <div class="card-footer bg-transparent">
         {% if user.is_authenticated %}
-            {% if course|enrolled:user %}
+            {% if course.id in enrolled_course_ids %}
                 <a href="{% url 'courses:course_detail' course.slug %}" class="btn btn-success btn-sm w-100">
                     <i class="bi bi-play-circle me-1"></i>Continue Learning
+                </a>
+            {% elif course.price %}
+                <a href="{% url 'courses:course_detail' course.slug %}" class="btn btn-primary btn-sm w-100">
+                    <i class="bi bi-eye me-1"></i>View Details
                 </a>
             {% else %}
                 <form method="post" action="{% url 'courses:enroll' course.id %}" class="d-inline">

@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
+from django.utils import timezone
 from model_utils.managers import InheritanceManager
 
 
@@ -30,7 +31,13 @@ class Quiz(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            base_slug = slugify(self.title) or 'quiz'
+            candidate = base_slug
+            counter = 2
+            while Quiz.objects.filter(slug=candidate).exclude(pk=self.pk).exists():
+                candidate = f"{base_slug}-{counter}"
+                counter += 1
+            self.slug = candidate
         super().save(*args, **kwargs)
 
     def get_questions(self):
@@ -144,15 +151,16 @@ class QuizAttempt(models.Model):
         self.save()
 
     def get_percent_correct(self):
-        total_questions = len(self.question_list.split(
-            ',')) if self.question_list else 0
+        total_questions = len(
+            [question_id for question_id in self.question_list.split(',') if question_id]
+        ) if self.question_list else self.quiz.questions.count()
         if total_questions == 0:
             return 0
         return (self.current_score / total_questions) * 100
 
     def mark_quiz_complete(self):
         self.completed = True
-        self.end = models.DateTimeField(auto_now=True)
+        self.end = timezone.now()
         self.save()
 
     def check_if_passed(self):

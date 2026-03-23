@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 from .models import Quiz, Question, MCQuestion, Choice, EssayQuestion, QuizAttempt
 
@@ -9,12 +10,20 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    choices = ChoiceSerializer(
-        many=True, read_only=True, source='mcquestion.choices')
+    choices = serializers.SerializerMethodField()
 
     class Meta:
         model = Question
-        fields = ['id', 'content', 'figure', 'explanation', 'choices']
+        fields = ['id', 'quiz', 'content', 'figure', 'explanation', 'choices']
+
+    def get_choices(self, obj):
+        if isinstance(obj, MCQuestion):
+            return ChoiceSerializer(obj.choices.all(), many=True).data
+        try:
+            mc_question = obj.mcquestion
+        except ObjectDoesNotExist:
+            return []
+        return ChoiceSerializer(mc_question.choices.all(), many=True).data
 
 
 class MCQuestionSerializer(QuestionSerializer):
@@ -53,6 +62,7 @@ class QuizSerializer(serializers.ModelSerializer):
 
 
 class QuizAttemptSerializer(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
     student_name = serializers.CharField(
         source='student.username', read_only=True)
     quiz_title = serializers.CharField(source='quiz.title', read_only=True)
@@ -62,7 +72,7 @@ class QuizAttemptSerializer(serializers.ModelSerializer):
         model = QuizAttempt
         fields = ['id', 'student', 'student_name', 'quiz', 'quiz_title', 'current_score',
                   'percent_correct', 'start', 'end', 'completed']
-        read_only_fields = ['id', 'start', 'end']
+        read_only_fields = ['id', 'start', 'end', 'completed']
 
     def get_percent_correct(self, obj):
         return obj.get_percent_correct()

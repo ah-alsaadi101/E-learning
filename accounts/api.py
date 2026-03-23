@@ -16,7 +16,11 @@ class IsAdminOrSelf(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return request.user.is_staff or obj == request.user
+        return (
+            request.user.is_staff
+            or getattr(request.user, 'role', None) == 'admin'
+            or obj == request.user
+        )
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -28,7 +32,10 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if self.request.user.role != 'admin':
+        if not (
+            self.request.user.is_staff
+            or getattr(self.request.user, 'role', None) == 'admin'
+        ):
             # Non-admins can only see their own profile
             return queryset.filter(id=self.request.user.id)
         return queryset

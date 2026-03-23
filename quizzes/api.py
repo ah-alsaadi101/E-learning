@@ -19,7 +19,15 @@ class IsInstructorOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.course.instructor == request.user
+        course = getattr(obj, 'course', None)
+        if course is not None:
+            return course.instructor == request.user
+
+        quiz_manager = getattr(obj, 'quiz', None)
+        if hasattr(quiz_manager, 'all'):
+            return quiz_manager.filter(course__instructor=request.user).exists()
+
+        return False
 
 
 class QuizViewSet(viewsets.ModelViewSet):
@@ -51,6 +59,7 @@ class QuizViewSet(viewsets.ModelViewSet):
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.QuestionSerializer
     queryset = Question.objects.prefetch_related('quiz', 'mcquestion__choices')
     permission_classes = [permissions.IsAuthenticated, IsInstructorOrReadOnly]
     filter_backends = [DjangoFilterBackend]
@@ -65,7 +74,7 @@ class QuestionViewSet(viewsets.ModelViewSet):
         queryset = super().get_queryset()
         quiz_id = self.request.query_params.get('quiz')
         if quiz_id:
-            return queryset.filter(quiz=quiz_id)
+            return queryset.filter(quiz__id=quiz_id).distinct()
         return queryset
 
 
@@ -78,6 +87,9 @@ class QuizAttemptViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(student=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(student=self.request.user)
 
     @action(detail=True, methods=['post'])
     def submit_answer(self, request, pk=None):

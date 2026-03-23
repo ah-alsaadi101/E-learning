@@ -22,7 +22,7 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.select_related(
-        'author', 'course').prefetch_related('comments')
+        'author', 'course').prefetch_related('comments__author')
     serializer_class = serializers.PostSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
@@ -30,7 +30,7 @@ class PostViewSet(viewsets.ModelViewSet):
     filterset_fields = ['course', 'author']
 
     def perform_create(self, serializer):
-        serializer.save(author=self.user)
+        serializer.save(author=self.request.user)
 
     @action(detail=True, methods=['post'])
     def add_comment(self, request, pk=None):

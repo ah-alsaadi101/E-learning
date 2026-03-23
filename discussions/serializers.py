@@ -3,6 +3,8 @@ from .models import Post, Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all(), required=False)
     author_name = serializers.CharField(
         source='author.username', read_only=True)
     author_picture = serializers.ImageField(
@@ -10,12 +12,13 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['id', 'author', 'author_name', 'author_picture',
+        fields = ['id', 'post', 'author', 'author_name', 'author_picture',
                   'content', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at']
 
 
 class PostSerializer(serializers.ModelSerializer):
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
     author_name = serializers.CharField(
         source='author.username', read_only=True)
     author_picture = serializers.ImageField(

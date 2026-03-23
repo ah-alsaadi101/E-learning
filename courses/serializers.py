@@ -19,6 +19,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = '__all__'
+        read_only_fields = ['slug', 'code', 'created_at', 'updated_at']
 
     def get_lessons_count(self, obj):
         return obj.lessons.count()
@@ -36,6 +37,7 @@ class LessonSerializer(serializers.ModelSerializer):
 
 
 class EnrollmentSerializer(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
     course_title = serializers.CharField(source='course.title', read_only=True)
     student_name = serializers.CharField(
         source='student.username', read_only=True)
@@ -43,11 +45,14 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
         fields = '__all__'
+        read_only_fields = ['enrollment_date', 'total_score', 'grade', 'grade_point']
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
+    student = serializers.HiddenField(default=serializers.CurrentUserDefault())
     course_title = serializers.CharField(source='course.title', read_only=True)
 
     class Meta:
         model = Favorite
         fields = '__all__'
+        read_only_fields = ['created_at']

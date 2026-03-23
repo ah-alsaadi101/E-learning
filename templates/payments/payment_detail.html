@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment Detail - EduLearn{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Payment Detail</h5>
+                    <a href="{% url 'payments:payment_list' %}" class="btn btn-sm btn-outline-secondary">Back</a>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="text-muted small">Course</div>
+                        <div class="fw-semibold">{{ payment.course.title }}</div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="text-muted small">Student</div>
+                            <div>{{ payment.student.get_full_name|default:payment.student.username }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-muted small">Instructor</div>
+                            <div>{{ payment.course.instructor.get_full_name|default:payment.course.instructor.username }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-muted small">Amount</div>
+                            <div>${{ payment.amount|floatformat:2 }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-muted small">Method</div>
+                            <div>{{ payment.get_payment_method_display }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-muted small">Status</div>
+                            <div>{{ payment.get_status_display }}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-muted small">Date</div>
+                            <div>{{ payment.payment_date|date:"M d, Y H:i" }}</div>
+                        </div>
+                    </div>
+                    {% if payment.transaction_id %}
+                    <hr>
+                    <div class="text-muted small">Transaction ID</div>
+                    <div class="font-monospace">{{ payment.transaction_id }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

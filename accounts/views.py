@@ -6,8 +6,13 @@ from .forms import UserRegistrationForm
 
 @login_required
 def profile(request):
+    enrollments = request.user.enrollments.select_related('course').all()
+    created_courses = request.user.courses.select_related('category').all()
     return render(request, 'accounts/profile.html', {
-        'user': request.user,
+        'profile_user': request.user,
+        'enrollments': enrollments,
+        'created_courses': created_courses,
+        'payments_count': request.user.payments.count(),
     })
 
 

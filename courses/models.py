@@ -3,6 +3,21 @@ from django.conf import settings
 from django.utils.text import slugify
 
 
+def _generate_unique_value(model_class, field_name, base_value, instance_pk=None, max_length=None):
+    value = (base_value or '').strip() or field_name
+    if max_length:
+        value = value[:max_length]
+
+    candidate = value
+    counter = 2
+    while model_class.objects.filter(**{field_name: candidate}).exclude(pk=instance_pk).exists():
+        suffix = f"-{counter}"
+        trimmed_value = value[:max_length - len(suffix)] if max_length else value
+        candidate = f"{trimmed_value}{suffix}"
+        counter += 1
+    return candidate
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True)
@@ -43,7 +58,21 @@ class Course(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = _generate_unique_value(
+                Course,
+                'slug',
+                slugify(self.title) or 'course',
+                instance_pk=self.pk,
+                max_length=self._meta.get_field('slug').max_length,
+            )
+        if not self.code:
+            self.code = _generate_unique_value(
+                Course,
+                'code',
+                slugify(self.title).replace('-', '').upper()[:12] or 'COURSE',
+                instance_pk=self.pk,
+                max_length=self._meta.get_field('code').max_length,
+            )
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -140,6 +169,19 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.student.username} - {self.course.title}"
+
+    @property
+    def progress(self):
+        return 100 if self.status == 'completed' else 0
+
+    @property
+    def completed_lessons(self):
+        lessons = self.course.lessons.all()
+        return lessons if self.status == 'completed' else lessons.none()
+
+    @property
+    def time_spent(self):
+        return '0h'
 
     class Meta:
         unique_together = ['student', 'course']

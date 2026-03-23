@@ -4,7 +4,10 @@ from .models import NewsAndEvents
 
 def news_list(request):
     news = NewsAndEvents.objects.filter(post_type='news')
-    return render(request, 'core/news_list.html', {'news': news})
+    return render(request, 'core/news_list.html', {
+        'news': news,
+        'events_count': NewsAndEvents.objects.filter(post_type='event').count(),
+    })
 
 
 def events_list(request):
