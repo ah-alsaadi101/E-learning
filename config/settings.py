@@ -11,30 +11,75 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+from importlib.util import find_spec
 from pathlib import Path
 
-import dj_database_url
-import environ
+try:
+    import dj_database_url
+except ImportError:
+    dj_database_url = None
+
+try:
+    import environ
+except ImportError:
+    environ = None
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    load_dotenv = None
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
-environ.Env.read_env(str(BASE_DIR / '.env'))
+ENV_PATH = BASE_DIR / '.env'
+
+if load_dotenv:
+    load_dotenv(ENV_PATH)
+
+if environ:
+    env = environ.Env()
+    environ.Env.read_env(str(ENV_PATH))
+
+    def env_get(name, default=None):
+        return env(name, default=default)
+
+    def env_bool(name, default=False):
+        return env.bool(name, default=default)
+
+    def env_list(name, default=None):
+        return env.list(name, default=default or [])
+else:
+    def env_get(name, default=None):
+        return os.getenv(name, default)
+
+    def env_bool(name, default=False):
+        value = os.getenv(name)
+        if value is None:
+            return default
+        return value.lower() in {'1', 'true', 'yes', 'on'}
+
+    def env_list(name, default=None):
+        value = os.getenv(name)
+        if value is None:
+            return default or []
+        return [item.strip() for item in value.split(',') if item.strip()]
+
+HAS_WHITENOISE = find_spec('whitenoise') is not None
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env(
+SECRET_KEY = env_get(
     'SECRET_KEY',
     default='django-insecure-32c1(1l%kzto11h%=)&s@d#0f8@gr1l+#5jlqgcnz(5t7-*kto',
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = env_bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
+ALLOWED_HOSTS = env_list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
 
 # Application definition
@@ -63,7 +108,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,6 +115,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if HAS_WHITENOISE:
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 # Security Settings
 SECURE_SSL_REDIRECT = not DEBUG
@@ -113,10 +160,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        conn_health_checks=True,
+    'default': (
+        dj_database_url.config(
+            default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+        if dj_database_url
+        else {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     )
 }
 
@@ -145,7 +199,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = env('TIME_ZONE', default='UTC')
+TIME_ZONE = env_get('TIME_ZONE', default='UTC')
 
 USE_I18N = True
 
@@ -164,7 +218,11 @@ STORAGES = {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
     },
     'staticfiles': {
-        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+        'BACKEND': (
+            'whitenoise.storage.CompressedManifestStaticFilesStorage'
+            if HAS_WHITENOISE
+            else 'django.contrib.staticfiles.storage.StaticFilesStorage'
+        ),
     },
 }
 
