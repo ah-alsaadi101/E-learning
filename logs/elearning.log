@@ -456,3 +456,4 @@ WARNING 2026-03-23 02:57:11,516 log 13240 9696 Method Not Allowed (GET): /accoun
 WARNING 2026-03-23 02:57:11,517 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0
 WARNING 2026-03-23 02:57:11,696 log 13240 9696 Method Not Allowed (GET): /accounts/logout/
 WARNING 2026-03-23 02:57:11,697 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0
+WARNING 2026-03-24 03:00:40,300 log 6184 3192 Forbidden: /api/courses/courses/

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .api_views import api_root, health_check
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,8 @@ urlpatterns = [
     path('quizzes/', include('quizzes.urls')),
     path('payments/', include('payments.urls')),
     path('discussions/', include('discussions.urls')),
+    path('api/', api_root, name='api_root'),
+    path('api/health/', health_check, name='api_health'),
     path('api/', include([
         path('accounts/', include('accounts.api_urls')),
         path('courses/', include('courses.api_urls')),

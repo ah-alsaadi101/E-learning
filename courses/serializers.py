@@ -20,6 +20,9 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = '__all__'
         read_only_fields = ['slug', 'code', 'created_at', 'updated_at']
+        extra_kwargs = {
+            'instructor': {'required': False},
+        }
 
     def get_lessons_count(self, obj):
         return obj.lessons.count()
