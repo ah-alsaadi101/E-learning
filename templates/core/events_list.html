@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Events</title>
+  </head>
+  <body>
+    <h1>Events</h1>
+    <ul>
+      {% for item in events %}
+      <li>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.summary }}</p>
+        <small>{{ item.created_at }}</small>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

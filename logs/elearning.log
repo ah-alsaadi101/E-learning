@@ -1,0 +1,458 @@
+INFO 2026-03-23 01:24:37,702 autoreload 25704 28524 Watching for file changes with StatReloader
+INFO 2026-03-23 01:25:17,118 autoreload 7484 30804 Watching for file changes with StatReloader
+INFO 2026-03-23 01:41:09,630 autoreload 29620 26040 Watching for file changes with StatReloader
+INFO 2026-03-23 01:41:17,934 log 29620 9328 "GET / HTTP/1.1" 301 0
+INFO 2026-03-23 01:41:17,934 log 29620 32044 code 400, message Bad request version ('\\x02h2\\x08http/1.1\\x00')
+ERROR 2026-03-23 01:41:17,935 log 29620 32044 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:17,938 log 29620 32692 code 400, message Bad request version ('\\x01\\x1a\\x00\\x00\\x01\\x00\\x01')
+ERROR 2026-03-23 01:41:18,002 log 29620 32692 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:19,696 log 29620 27832 code 400, message Bad request version ('\xf7')
+ERROR 2026-03-23 01:41:19,697 log 29620 27832 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:19,699 log 29620 24708 code 400, message Bad request version ('\\x8a\\x8a\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06S\xca\xca\\x00\\x00\\x00')
+ERROR 2026-03-23 01:41:19,700 log 29620 24708 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:19,701 log 29620 9300 code 400, message Bad request version ('<\xc6X\\x7f\xfc\xac\\x97\xf8-HKSw')
+ERROR 2026-03-23 01:41:19,701 log 29620 9300 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:19,704 log 29620 26068 code 400, message Bad request version ('\xab\\x84h')
+ERROR 2026-03-23 01:41:19,705 log 29620 26068 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,465 log 29620 27012 code 400, message Bad request version ('M\\x15\xa2{\xf8\xeaY')
+ERROR 2026-03-23 01:41:20,466 log 29620 27012 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,468 log 29620 33536 code 400, message Bad request version ('\xea8\xe31\\x9d!\xbc_"\\x18\\x94=*\xaa\\x0e8\\x02A')
+ERROR 2026-03-23 01:41:20,469 log 29620 33536 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,471 log 29620 14972 code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x07\\x00\\x01\\x00\\x06\xfc\\x03\\x03\\x8c\\x92Q{\\x04\\x98\xa7uK\xb5\xa3')
+ERROR 2026-03-23 01:41:20,472 log 29620 14972 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,475 log 29620 2572 code 400, message Bad request version ('\\x03f\\x12#w\\x9e')
+ERROR 2026-03-23 01:41:20,476 log 29620 2572 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,915 log 29620 33172 code 400, message Bad request version ('jj\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06S\\x9a\\x9a\\x00\\x00\\x00\\x12\\x00\\x00\\x00\\x17\\x00\\x00\\x00')
+ERROR 2026-03-23 01:41:20,915 log 29620 33172 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,917 log 29620 28248 code 400, message Bad request version ('\xc1\\x9a\xa47J')
+ERROR 2026-03-23 01:41:20,918 log 29620 28248 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,918 log 29620 7992 code 400, message Bad request version ('\xba\xba\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06\\x93\\x9a\\x9a\\x00\\x00\\x00')
+ERROR 2026-03-23 01:41:20,919 log 29620 7992 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:20,923 log 29620 18116 code 400, message Bad request version ('\\x00\\x12\\x00\\x10\\x04\\x03\\x08\\x04\\x04\\x01\\x05\\x03\\x08\\x05\\x05\\x01\\x08\\x06\\x06\\x01\\x00\\x05\\x00\\x05\\x01\\x00\\x00\\x00\\x00\\x00\\x1b\\x00\\x03\\x02\\x00\\x02\\x00')
+ERROR 2026-03-23 01:41:20,924 log 29620 18116 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:21,114 log 29620 28956 code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x06\xe0\\x01\\x00\\x06\xdc\\x03\\x03\xd6\xe1\xe5\xfdI[\\x97\xfdx5\\x06<\xf9\xefZ[,\\x99\xcb\\x91\xd9_\xe8\\x00\\x8dE$\xa8\\x08\xfd\xdfk')
+ERROR 2026-03-23 01:41:21,115 log 29620 28956 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:21,115 log 29620 26700 code 400, message Bad request version ('\\x82[J\xe7')
+ERROR 2026-03-23 01:41:21,117 log 29620 26700 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:21,117 log 29620 30168 code 400, message Bad request syntax ('\\x16\\x03\\x01\\x07\\x00\\x01\\x00\\x06\xfc\\x03\\x03<\xd5\xa2\xf7\\x9b\\x95\\x96')
+ERROR 2026-03-23 01:41:21,118 log 29620 30168 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:41:21,119 log 29620 23756 code 400, message Bad request version ('e\xf9\\x15\xc2\xc2\xf6\xa2\xf2\\x8c\xbfj\\x95w\xf1\xd7\\x07\\x8av\\x08\\x99*')
+ERROR 2026-03-23 01:41:21,121 log 29620 23756 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:04,309 autoreload 31312 31592 Watching for file changes with StatReloader
+INFO 2026-03-23 01:42:47,405 log 31312 4780 code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x06')
+ERROR 2026-03-23 01:42:47,406 log 31312 4780 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:47,408 log 31312 30832 code 400, message Bad request version ('\\x00\\x12\\x00\\x10\\x04\\x03\\x08\\x04\\x04\\x01\\x05\\x03\\x08\\x05\\x05\\x01\\x08\\x06\\x06\\x01\\x00')
+INFO 2026-03-23 01:42:47,408 log 31312 28828 code 400, message Bad request version ("M\xc0'\xc6\xb9U\xfdT\xbf\xd0-")
+ERROR 2026-03-23 01:42:47,408 log 31312 30832 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-03-23 01:42:47,408 log 31312 28828 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:47,411 log 31312 31032 code 400, message Bad request version ('\\x9a\\x9a\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06\\x93ZZ\\x00\\x00\\x00')
+ERROR 2026-03-23 01:42:47,411 log 31312 31032 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,300 log 31312 28468 code 400, message Bad request version ('\\x02h2\\x08http/1.1\xff\\x01\\x00\\x01\\x00\\x00')
+ERROR 2026-03-23 01:42:48,300 log 31312 28468 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,301 log 31312 6436 code 400, message Bad request version ('\xefa2[\\x98e\\x18\xe6\\x84>\xa6\xb07\xa5\\x11\\x822\xc2\xec%\\x8e\xfby\\x05\xb2\xc6\xa1\xde')
+ERROR 2026-03-23 01:42:48,301 log 31312 6436 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,302 log 31312 25988 code 400, message Bad request version ("k\xc9$\xa3u*')=\xd3\xb8n\\x07\xda\\x17h.\xea\xef#Y\\x00")
+ERROR 2026-03-23 01:42:48,303 log 31312 25988 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,304 log 31312 24640 code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x06')
+ERROR 2026-03-23 01:42:48,304 log 31312 24640 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,850 log 31312 27552 code 400, message Bad HTTP/0.9 request type ('\\x16\\x03\\x01\\x06\xc0\\x01\\x00\\x06\xbc\\x03\\x03`\xa9\xd8\xfc\xab>\\x7f\xffx\\x88\xabs\xf4\xcc\xd4\xb8\\x93\xd2\\x06\xc7\xc7\\xad\\x05\xcd\xa1\xc0LHMj\xb1\xe0')
+ERROR 2026-03-23 01:42:48,851 log 31312 27552 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,852 log 31312 27784 code 400, message Bad request version ('\xed\xc1Y\\x11\\x84Z\\x891\\x9cD\\x94\\x17\\x00')
+ERROR 2026-03-23 01:42:48,853 log 31312 27784 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,853 log 31312 9016 code 400, message Bad request version ('\\x02\xea_\xd5\\x00')
+ERROR 2026-03-23 01:42:48,854 log 31312 9016 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:48,856 log 31312 10172 code 400, message Bad request version ('\xc0\xc1')
+ERROR 2026-03-23 01:42:48,857 log 31312 10172 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:51,431 log 31312 9956 code 400, message Bad request version ('zz\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06Szz\\x00\\x00D\xcd\\x00\\x05\\x00\\x03\\x02h2\\x00+\\x00\\x07\\x06ZZ\\x03\\x04\\x03\\x03\\x00-\\x00\\x02\\x01\\x01\\x00')
+ERROR 2026-03-23 01:42:51,432 log 31312 9956 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:51,434 log 31312 31680 code 400, message Bad request version ('/\xd8\xdb}BX\\x04.\xd7&\xde\xa7\\x93\\x81\xear\xce\xf1bo3y[Xzw\xec\\x17\xe2\\x93Dc\xbb|\xc9\\x987&U\xca\\x8eW\\x95l\\x8c\xab\xc3\xdc\\x9d\xb3U\xaej\xcc\\x9aI(\xa5r+\\x04z\\x08\xc23\xd0\\x10\\x90\xeb\xa1\xe88\xa7\xa8\\x17\\x1b7\xe20\xa8I\\x96')
+ERROR 2026-03-23 01:42:51,435 log 31312 31680 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:51,436 log 31312 4484 code 400, message Bad request version ('\\x18\xe2\xd9)V\\x92@Jv')
+ERROR 2026-03-23 01:42:51,436 log 31312 4484 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:42:51,439 log 31312 33520 code 400, message Bad request version ('\xd3(J\\x1a\\x14\\x9c99D\xac9\\x10\\x16\xcaO\\x92\\x89r\\x8c\xaa8\\x8cVEgf\xca\xcctYA\\x01\\x9f')
+ERROR 2026-03-23 01:42:51,439 log 31312 33520 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:43:11,251 log 31312 26148 "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-03-23 01:43:11,314 log 31312 26148 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+INFO 2026-03-23 01:43:11,942 log 31312 12636 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+INFO 2026-03-23 01:43:11,964 log 31312 25740 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-03-23 01:43:11,972 log 31312 26148 "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+INFO 2026-03-23 01:43:12,003 log 31312 6784 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+INFO 2026-03-23 01:43:12,005 log 31312 21652 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-03-23 01:43:12,014 log 31312 6784 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-03-23 01:43:12,023 log 31312 30944 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-03-23 01:43:39,078 basehttp 31312 30944 - Broken pipe from ('127.0.0.1', 53893)
+INFO 2026-03-23 01:43:40,797 log 31312 6784 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-03-23 01:43:40,861 log 31312 6784 "GET /admin/ HTTP/1.1" 200 18569
+INFO 2026-03-23 01:43:40,890 log 31312 6784 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2026-03-23 01:43:40,897 log 31312 6784 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-03-23 01:43:40,897 log 31312 21652 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO 2026-03-23 01:45:25,050 log 31312 388 code 400, message Bad request version ('\\x02h2\\x08http/1.1\\x00+\\x00\\x07\\x06zz\\x03\\x04\\x03\\x03\\x003\\x04\xef\\x04\xed')
+ERROR 2026-03-23 01:45:25,051 log 31312 388 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:25,053 log 31312 9712 code 400, message Bad request version ('\xba\xba\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06s')
+ERROR 2026-03-23 01:45:25,053 log 31312 9712 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:28,263 log 31312 13444 code 400, message Bad request version ('JJ\\x13\\x01\\x13\\x02\\x13\\x03\xc0+\xc0/\xc0,\xc00\xcc\xa9\xcc\xa8\xc0\\x13\xc0\\x14\\x00\\x9c\\x00\\x9d\\x00/\\x005\\x01\\x00\\x06s\\x8a\\x8a\\x00\\x00\xff\\x01\\x00\\x01\\x00\\x00\\x17\\x00\\x00\\x00#\\x00\\x00\\x00\\x12\\x00\\x00\\x00')
+ERROR 2026-03-23 01:45:28,264 log 31312 13444 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:28,266 log 31312 1744 code 400, message Bad request version ('\\x00\\x02\\x01\\x00\\x00-\\x00\\x02\\x01\\x01\\x00')
+ERROR 2026-03-23 01:45:28,266 log 31312 1744 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:28,268 log 31312 31652 code 400, message Bad request version ('\\x00\\x12\\x00\\x10\\x04\\x03\\x08\\x04\\x04\\x01\\x05\\x03\\x08\\x05\\x05\\x01\\x08\\x06\\x06\\x01\\x00')
+ERROR 2026-03-23 01:45:28,269 log 31312 31652 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:28,272 log 31312 15888 code 400, message Bad request syntax ('\\x16\\x03\\x01\\x06\xe0\\x01\\x00\\x06\xdc\\x03\\x03\\x8e6lU\xfc\xbf\xcd\xa2\xf0\\x9dd\xe7\\x83')
+ERROR 2026-03-23 01:45:28,273 log 31312 15888 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:29,096 log 31312 30212 code 400, message Bad request version ('\\x02h2\\x08http/1.1\\x00')
+ERROR 2026-03-23 01:45:29,096 log 31312 30212 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:29,097 log 31312 24816 code 400, message Bad request version ('}\\x10\xb8\\x99\xf2\\x00\\x91\\xad')
+ERROR 2026-03-23 01:45:29,097 log 31312 24816 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:45:29,099 log 31312 31056 code 400, message Bad request syntax ('\\x16\\x03\\x01\\x07\\x00\\x01\\x00\\x06\xfc\\x03\\x03\xe9\xc2\xfe\xc1\xa79-\xd7&WD\\x9f\\x96\\x80qfZg\\x95t')
+INFO 2026-03-23 01:45:29,099 log 31312 25316 code 400, message Bad request version ('\xf9\xc3\xcc0D\\x10NU\\x9c\xfb:\\x0f\xf7\xe1\xa8\\x142')
+ERROR 2026-03-23 01:45:29,099 log 31312 31056 You're accessing the development server over HTTPS, but it only supports HTTP.
+ERROR 2026-03-23 01:45:29,100 log 31312 25316 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2026-03-23 01:48:17,123 log 31312 32492 "GET / HTTP/1.1" 302 0
+INFO 2026-03-23 01:48:17,137 log 31312 32492 "GET /accounts/login/?next=/ HTTP/1.1" 200 810
+INFO 2026-03-23 01:48:33,204 log 31312 32492 "POST /accounts/login/?next=/ HTTP/1.1" 302 0
+INFO 2026-03-23 01:48:33,226 log 31312 32492 "GET / HTTP/1.1" 200 510
+INFO 2026-03-23 01:48:43,823 log 31312 32492 "GET /accounts/profile/ HTTP/1.1" 200 282
+INFO 2026-03-23 01:48:46,458 log 31312 32492 "GET / HTTP/1.1" 200 510
+INFO 2026-03-23 01:48:47,329 log 31312 32492 "GET /payments/ HTTP/1.1" 200 366
+INFO 2026-03-23 01:48:53,592 log 31312 32492 "GET /core/news/ HTTP/1.1" 200 137
+INFO 2026-03-23 01:48:56,554 log 31312 32492 "GET /dashboard/ HTTP/1.1" 200 671
+INFO 2026-03-23 01:49:08,368 log 31312 32492 "GET /accounts/profile/ HTTP/1.1" 200 282
+INFO 2026-03-23 02:40:03,378 autoreload 31312 31592 E:\django\merged_elearning\config\settings.py changed, reloading.
+INFO 2026-03-23 02:40:05,192 autoreload 13240 23232 Watching for file changes with StatReloader
+ERROR 2026-03-23 02:43:36,957 log 13240 23652 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\django\merged_elearning\courses\views.py", line 38, in course_list
+    return render(request, 'courses/course_list.html', {
+        'courses': courses,
+        'categories': categories,
+    })
+  File "E:\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\django\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'discussion_list' with no arguments not found. 1 pattern(s) tried: ['discussions/course/(?P<course_id>[0-9]+)/\\Z']
+ERROR 2026-03-23 02:43:36,970 log 13240 23652 "GET / HTTP/1.1" 500 157500
+INFO 2026-03-23 02:45:38,328 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:45:38,449 log 13240 23652 "GET /static/css/style.css HTTP/1.1" 200 11306
+INFO 2026-03-23 02:45:49,369 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:45:54,332 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:45:55,187 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:45:57,895 log 13240 23652 "GET /accounts/profile/ HTTP/1.1" 200 7493
+INFO 2026-03-23 02:45:59,492 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:46:00,450 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:46:01,046 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:46:02,089 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:46:03,850 log 13240 23652 "GET /core/news/ HTTP/1.1" 200 137
+INFO 2026-03-23 02:46:09,198 log 13240 23652 "GET /accounts/profile/ HTTP/1.1" 200 7493
+INFO 2026-03-23 02:46:12,158 log 13240 23652 "GET /payments/ HTTP/1.1" 200 366
+INFO 2026-03-23 02:46:15,168 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:46:15,931 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:46:19,324 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:46:20,567 log 13240 23652 "GET /core/news/ HTTP/1.1" 200 137
+INFO 2026-03-23 02:46:22,413 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:46:23,539 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:46:24,293 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:46:33,826 log 13240 23652 "GET /dashboard/ HTTP/1.1" 200 7860
+INFO 2026-03-23 02:46:35,082 log 13240 23652 "GET / HTTP/1.1" 200 7387
+INFO 2026-03-23 02:54:55,189 log 13240 9696 "GET / HTTP/1.1" 200 11456
+INFO 2026-03-23 02:54:55,226 log 13240 9696 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2026-03-23 02:55:06,117 log 13240 9696 "GET / HTTP/1.1" 200 11456
+ERROR 2026-03-23 02:55:10,853 log 13240 9696 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endfor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\django\merged_elearning\courses\views.py", line 30, in dashboard
+    return render(request, 'courses/dashboard.html', context)
+  File "E:\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "E:\django\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "E:\django\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 644, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: E:\django\merged_elearning\templates\courses\dashboard.html, Invalid block tag on line 389: 'endfor'. Did you forget to register or load this tag?
+ERROR 2026-03-23 02:55:10,860 log 13240 9696 "GET /dashboard/ HTTP/1.1" 500 187692
+INFO 2026-03-23 02:55:42,038 log 13240 9696 "GET / HTTP/1.1" 200 11456
+INFO 2026-03-23 02:55:43,339 log 13240 9696 "GET /quizzes/ HTTP/1.1" 200 10648
+INFO 2026-03-23 02:55:46,715 log 13240 9696 "GET /core/news/ HTTP/1.1" 200 10203
+ERROR 2026-03-23 02:55:50,297 log 13240 9696 Internal Server Error: /accounts/profile/
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\django\merged_elearning\accounts\views.py", line 9, in profile
+    return render(request, 'accounts/profile.html', {
+        'user': request.user,
+    })
+  File "E:\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 174, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 160, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 166, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 66, in render
+    result = block.nodelist.render(context)
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1091, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 1052, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\defaulttags.py", line 511, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\django\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'profile_edit' not found. 'profile_edit' is not a valid view function or pattern name.
+ERROR 2026-03-23 02:55:50,307 log 13240 9696 "GET /accounts/profile/ HTTP/1.1" 500 175694
+INFO 2026-03-23 02:56:59,830 log 13240 9696 "GET /quizzes/ HTTP/1.1" 200 10648
+ERROR 2026-03-23 02:57:00,754 log 13240 9696 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endfor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\django\merged_elearning\courses\views.py", line 30, in dashboard
+    return render(request, 'courses/dashboard.html', context)
+  File "E:\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "E:\django\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "E:\django\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 644, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: E:\django\merged_elearning\templates\courses\dashboard.html, Invalid block tag on line 389: 'endfor'. Did you forget to register or load this tag?
+ERROR 2026-03-23 02:57:00,759 log 13240 9696 "GET /dashboard/ HTTP/1.1" 500 187700
+INFO 2026-03-23 02:57:02,680 log 13240 9696 "GET / HTTP/1.1" 200 11456
+INFO 2026-03-23 02:57:02,706 log 13240 9696 "GET /static/css/style.css HTTP/1.1" 304 0
+INFO 2026-03-23 02:57:04,475 log 13240 9696 "GET / HTTP/1.1" 200 11456
+ERROR 2026-03-23 02:57:05,530 log 13240 9696 Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 577, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endfor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\django\merged_elearning\courses\views.py", line 30, in dashboard
+    return render(request, 'courses/dashboard.html', context)
+  File "E:\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\engine.py", line 186, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "E:\django\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "E:\django\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 157, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 199, in compile_nodelist
+    nodelist = parser.parse()
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 585, in parse
+    raise self.error(token, e)
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 583, in parse
+    compiled_result = compile_func(self, token)
+  File "E:\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 307, in do_extends
+    nodelist = parser.parse()
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 579, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\django\.venv\Lib\site-packages\django\template\base.py", line 644, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Template: E:\django\merged_elearning\templates\courses\dashboard.html, Invalid block tag on line 389: 'endfor'. Did you forget to register or load this tag?
+ERROR 2026-03-23 02:57:05,535 log 13240 9696 "GET /dashboard/ HTTP/1.1" 500 187692
+WARNING 2026-03-23 02:57:08,472 log 13240 9696 Method Not Allowed (GET): /accounts/logout/
+WARNING 2026-03-23 02:57:08,474 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0
+WARNING 2026-03-23 02:57:10,228 log 13240 9696 Method Not Allowed (GET): /accounts/logout/
+WARNING 2026-03-23 02:57:10,229 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0
+WARNING 2026-03-23 02:57:11,005 log 13240 9696 Method Not Allowed (GET): /accounts/logout/
+WARNING 2026-03-23 02:57:11,006 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0
+WARNING 2026-03-23 02:57:11,516 log 13240 9696 Method Not Allowed (GET): /accounts/logout/
+WARNING 2026-03-23 02:57:11,517 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0
+WARNING 2026-03-23 02:57:11,696 log 13240 9696 Method Not Allowed (GET): /accounts/logout/
+WARNING 2026-03-23 02:57:11,697 log 13240 9696 "GET /accounts/logout/ HTTP/1.1" 405 0

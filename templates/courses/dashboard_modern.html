@@ -1,0 +1,467 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Dashboard -
+EduLearn{% endblock %} {% block extra_head %}
+<style>
+  .dashboard-header {
+    background: linear-gradient(
+      135deg,
+      var(--primary-color),
+      var(--primary-light)
+    );
+    color: white;
+    padding: 3rem 0;
+    margin-top: -1px;
+  }
+
+  .welcome-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat-icon.courses {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+  }
+  .stat-icon.progress {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+  }
+  .stat-icon.certificates {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+  }
+  .stat-icon.achievements {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .recent-activity {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .activity-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .activity-item:last-child {
+    border-bottom: none;
+  }
+
+  .activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .activity-icon.completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+  .activity-icon.started {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+  .activity-icon.earned {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+  }
+
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .quick-action-btn {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .quick-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--primary-color);
+  }
+
+  .quick-action-btn i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    width: 30px;
+  }
+
+  .current-courses {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .course-progress {
+    margin-bottom: 1.5rem;
+  }
+
+  .progress {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e5e7eb;
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-bar {
+    background: linear-gradient(
+      90deg,
+      var(--primary-color),
+      var(--primary-light)
+    );
+    border-radius: 4px;
+  }
+
+  .upcoming-deadlines {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .deadline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #ffeaa7;
+  }
+
+  .deadline-item:last-child {
+    border-bottom: none;
+  }
+
+  .deadline-course {
+    font-weight: 600;
+    color: #856404;
+  }
+
+  .deadline-date {
+    color: #856404;
+    font-size: 0.9rem;
+  }
+</style>
+{% endblock %} {% block content %}
+<!-- Dashboard Header -->
+<section class="dashboard-header">
+  <div class="container">
+    <div class="welcome-card" data-aos="fade-down">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h1 class="mb-2">
+            Welcome back, {{ user.get_full_name|default:user.username }}! 👋
+          </h1>
+          <p class="mb-0 opacity-75">
+            Ready to continue your learning journey? Here's what's happening
+            today.
+          </p>
+        </div>
+        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+          <div class="d-flex justify-content-lg-end justify-content-center">
+            <div class="bg-white bg-opacity-20 rounded-pill px-4 py-2">
+              <i class="bi bi-calendar me-2"></i>
+              {{ "now"|date:"l, F j, Y" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container py-5">
+  <!-- Quick Actions -->
+  <div class="quick-actions" data-aos="fade-up">
+    <a href="{% url 'courses:course_list' %}" class="quick-action-btn">
+      <i class="bi bi-search text-primary"></i>
+      <div>
+        <div class="fw-bold">Browse Courses</div>
+        <small class="text-muted">Find your next learning adventure</small>
+      </div>
+    </a>
+    <a href="{% url 'quizzes:quiz_list' %}" class="quick-action-btn">
+      <i class="bi bi-question-circle text-success"></i>
+      <div>
+        <div class="fw-bold">Take Quiz</div>
+        <small class="text-muted">Test your knowledge</small>
+      </div>
+    </a>
+    <a href="{% url 'accounts:profile' %}" class="quick-action-btn">
+      <i class="bi bi-person text-info"></i>
+      <div>
+        <div class="fw-bold">Update Profile</div>
+        <small class="text-muted">Manage your account settings</small>
+      </div>
+    </a>
+    <a href="{% url 'courses:course_list' %}" class="quick-action-btn">
+      <i class="bi bi-chat-dots text-warning"></i>
+      <div>
+        <div class="fw-bold">Browse Courses</div>
+        <small class="text-muted">Find courses to join discussions</small>
+      </div>
+    </a>
+  </div>
+
+  <!-- Stats Overview -->
+  <div class="stats-grid" data-aos="fade-up" data-aos-delay="100">
+    <div class="stat-card">
+      <div class="stat-icon courses">
+        <i class="bi bi-book"></i>
+      </div>
+      <div class="stat-number">{{ enrolled_courses|length }}</div>
+      <div class="stat-label">Enrolled Courses</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon progress">
+        <i class="bi bi-graph-up"></i>
+      </div>
+      <div class="stat-number">{{ completed_courses|length }}</div>
+      <div class="stat-label">Courses Completed</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon certificates">
+        <i class="bi bi-award"></i>
+      </div>
+      <div class="stat-number">{{ certificates_earned }}</div>
+      <div class="stat-label">Certificates Earned</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon achievements">
+        <i class="bi bi-trophy"></i>
+      </div>
+      <div class="stat-number">{{ achievements_count }}</div>
+      <div class="stat-label">Achievements</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Current Courses -->
+    <div class="col-lg-8" data-aos="fade-right">
+      <div class="current-courses">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="mb-0">
+            <i class="bi bi-play-circle me-2 text-primary"></i>Current Courses
+          </h3>
+          <a
+            href="{% url 'courses:course_list' %}"
+            class="btn btn-outline-primary btn-sm"
+          >
+            View All
+          </a>
+        </div>
+
+        {% if enrolled_courses %} {% for enrollment in
+        enrolled_courses|slice:":3" %}
+        <div class="course-progress">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="mb-0">{{ enrollment.course.title }}</h6>
+            <small class="text-muted"
+              >{{ enrollment.progress|default:0 }}% complete</small
+            >
+          </div>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              style="width: {{ enrollment.progress|default:0 }}%"
+            ></div>
+          </div>
+          <div class="d-flex justify-content-between mt-2">
+            <small class="text-muted">Continue Learning</small>
+            <a
+              href="{% url 'courses:course_detail' enrollment.course.slug %}"
+              class="btn btn-primary btn-sm"
+              >Resume</a
+            >
+          </div>
+        </div>
+        {% endfor %} {% else %}
+        <div class="empty-state">
+          <div class="empty-icon">
+            <i class="bi bi-book"></i>
+          </div>
+          <h5>No Active Courses</h5>
+          <p>Start your learning journey by enrolling in a course.</p>
+          <a href="{% url 'courses:course_list' %}" class="btn btn-primary">
+            <i class="bi bi-search me-1"></i>Browse Courses
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Recent Activity & Upcoming -->
+    <div class="col-lg-4" data-aos="fade-left">
+      <!-- Recent Activity -->
+      <div class="recent-activity mb-4">
+        <h5 class="mb-3">
+          <i class="bi bi-activity me-2 text-primary"></i>Recent Activity
+        </h5>
+
+        <div class="activity-item">
+          <div class="activity-icon completed">
+            <i class="bi bi-check-circle"></i>
+          </div>
+          <div>
+            <div class="fw-bold">Completed Module 3</div>
+            <small class="text-muted">Python for Beginners - 2 hours ago</small>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon started">
+            <i class="bi bi-play-circle"></i>
+          </div>
+          <div>
+            <div class="fw-bold">Started New Course</div>
+            <small class="text-muted"
+              >Data Science Fundamentals - 1 day ago</small
+            >
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon earned">
+            <i class="bi bi-star"></i>
+          </div>
+          <div>
+            <div class="fw-bold">Earned Certificate</div>
+            <small class="text-muted"
+              >Web Development Basics - 3 days ago</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Deadlines -->
+      <div class="upcoming-deadlines">
+        <h6 class="mb-3">
+          <i class="bi bi-calendar-event me-2"></i>Upcoming Deadlines
+        </h6>
+
+        <div class="deadline-item">
+          <div>
+            <div class="deadline-course">Final Project Submission</div>
+            <div class="deadline-date">Due in 2 days</div>
+          </div>
+          <i class="bi bi-exclamation-triangle text-warning"></i>
+        </div>
+
+        <div class="deadline-item">
+          <div>
+            <div class="deadline-course">Quiz: Advanced Topics</div>
+            <div class="deadline-date">Due in 5 days</div>
+          </div>
+          <i class="bi bi-clock text-info"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_scripts %}
+<script>
+  // Animate progress bars on scroll
+  document.addEventListener("DOMContentLoaded", function () {
+    const progressBars = document.querySelectorAll(".progress-bar");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const width = bar.style.width;
+          bar.style.width = "0%";
+          setTimeout(() => {
+            bar.style.width = width;
+          }, 200);
+        }
+      });
+    });
+
+    progressBars.forEach((bar) => observer.observe(bar));
+  });
+
+  // Add some interactive effects
+  document.querySelectorAll(".quick-action-btn").forEach((btn) => {
+    btn.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-4px) scale(1.02)";
+    });
+
+    btn.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0) scale(1)";
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+<!-- Loading Component -->
+{% comment %} Usage: {% include 'components/loading.html' with message='Loading courses...' %} {% endcomment %}
+<div class="text-center py-5">
+    <div class="spinner-border text-primary mb-3" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted">{{ message|default:"Loading..." }}</p>
+</div>

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}News & Events - EduLearn{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-2">
+                        <i class="bi bi-newspaper text-primary me-2"></i>News & Events
+                    </h1>
+                    <p class="text-muted mb-0">Stay updated with the latest news and upcoming events</p>
+                </div>
+                {% if user.is_authenticated and user.role == 'admin' %}
+                <a href="{% url 'core:news_create' %}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-2"></i>Add News/Event
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- News Stats -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-primary mb-2">
+                        <i class="bi bi-newspaper"></i>
+                    </div>
+                    <h3 class="card-title">{{ news|length }}</h3>
+                    <p class="card-text text-muted">Total Posts</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-info mb-2">
+                        <i class="bi bi-calendar-event"></i>
+                    </div>
+                    <h3 class="card-title">{{ events_count|default:0 }}</h3>
+                    <p class="card-text text-muted">Events</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-success mb-2">
+                        <i class="bi bi-eye"></i>
+                    </div>
+                    <h3 class="card-title">{{ total_views|default:0 }}</h3>
+                    <p class="card-text text-muted">Total Views</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Grid -->
+    <div class="row g-4">
+        {% for item in news %}
+        <div class="col-lg-6 col-xl-4">
+            <div class="card h-100 shadow-sm">
+                {% if item.image %}
+                <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.title }}" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge {% if item.posted_as == 'News' %}bg-primary{% else %}bg-info{% endif %}">
+                            <i class="bi {% if item.posted_as == 'News' %}bi-newspaper{% else %}bi-calendar-event{% endif %} me-1"></i>
+                            {{ item.posted_as }}
+                        </span>
+                        <small class="text-muted">{{ item.created_at|date:"M d, Y" }}</small>
+                    </div>
+                    <h5 class="card-title mb-3">{{ item.title }}</h5>
+                    <p class="card-text text-muted flex-grow-1">{{ item.summary|truncatechars:150 }}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="d-flex align-items-center text-muted">
+                            <i class="bi bi-eye me-1"></i>
+                            <small>{{ item.views|default:0 }} views</small>
+                        </div>
+                        <a href="{% url 'core:news_detail' item.slug %}" class="btn btn-outline-primary btn-sm">
+                            Read More <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <!-- Empty State -->
+        <div class="col-12">
+            {% include 'components/empty_state.html' with icon='bi-newspaper' title='No News Yet' message='Check back later for updates and announcements!' %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active">
+                <span class="page-link">{{ num }}</span>
+            </li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

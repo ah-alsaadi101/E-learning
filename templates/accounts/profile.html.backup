@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Profile</title>
+  </head>
+  <body>
+    <h1>Profile</h1>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Role: {{ user.get_role_display }}</p>
+    <p>Phone: {{ user.phone }}</p>
+    <p>Bio: {{ user.bio }}</p>
+    {% if user.picture %}
+    <img src="{{ user.picture.url }}" alt="Profile Picture" width="100" />
+    {% endif %}
+    <a href="{% url 'courses:course_list' %}">Back to Courses</a>
+  </body>
+</html>

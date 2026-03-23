@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard - E-Learning Platform</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'courses:dashboard' %}">Dashboard</a> |
+      <a href="{% url 'courses:course_list' %}">Courses</a> |
+      <a href="{% url 'accounts:profile' %}">Profile</a> |
+      <a href="{% url 'quizzes:quiz_list' %}">Quizzes</a> |
+      <a href="{% url 'payments:payment_list' %}">Payments</a> |
+      <a href="{% url 'core:news_list' %}">News</a> |
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    </nav>
+    <h1>Dashboard</h1>
+
+    {% if role == 'instructor' %}
+    <h2>Instructor Dashboard</h2>
+    <p>Total Courses: {{ total_courses }}</p>
+    <p>Total Enrollments: {{ total_enrollments }}</p>
+    <h3>Your Courses</h3>
+    <ul>
+      {% for course in courses %}
+      <li>
+        <a href="{% url 'courses:course_detail' course.slug %}"
+          >{{ course.title }}</a
+        >
+        - {{ course.enrollments.count }} students enrolled
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h2>Student Dashboard</h2>
+    <p>Total Enrollments: {{ total_enrollments }}</p>
+    <p>Total Favorites: {{ total_favorites }}</p>
+    <h3>Enrolled Courses</h3>
+    <ul>
+      {% for enrollment in enrollments %}
+      <li>
+        <a href="{% url 'courses:course_detail' enrollment.course.slug %}"
+          >{{ enrollment.course.title }}</a
+        >
+        - Status: {{ enrollment.get_status_display }} {% if enrollment.grade %}
+        - Grade: {{ enrollment.grade }}{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    <h3>Favorite Courses</h3>
+    <ul>
+      {% for favorite in favorites %}
+      <li>
+        <a href="{% url 'courses:course_detail' favorite.course.slug %}"
+          >{{ favorite.course.title }}</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>

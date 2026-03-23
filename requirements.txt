@@ -1,0 +1,49 @@
+# Core Django
+Django==5.2.12
+django-environ==0.11.2
+
+# REST API
+djangorestframework==3.15.2
+django-filter==24.3
+
+# Optional - JWT Authentication (uncomment to use)
+# djangorestframework-simplejwt==5.3.1
+
+# Optional - CORS Support (uncomment for mobile/cross-origin)
+# django-cors-headers==4.4.0
+
+# Image Processing
+Pillow==10.4.0
+
+# Utilities
+model-utils==4.5.0
+python-dateutil==2.8.2
+
+# Production Server
+gunicorn==23.0.0
+whitenoise==6.6.0
+
+# Database (for MySQL/PostgreSQL)
+mysqlclient==2.2.6  # For MySQL
+psycopg2-binary==2.9.9  # For PostgreSQL
+
+# Development & Testing
+pytest==8.2.0
+pytest-django==4.8.0
+pytest-cov==4.1.0
+factory-boy==3.3.0
+
+# Code Quality
+flake8==7.1.0
+black==24.3.0
+isort==5.13.2
+
+# Monitoring & Logging
+sentry-sdk==1.68.0
+
+# Caching (Redis - optional)
+# redis==5.0.0
+# django-redis==5.4.0
+
+# Email Handling
+django-anymail==10.5  # Optional for advanced email

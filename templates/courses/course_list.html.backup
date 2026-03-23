@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>E-Learning Platform - Courses</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{% url 'courses:dashboard' %}">Dashboard</a> |
+      <a href="{% url 'courses:course_list' %}">Courses</a> |
+      <a href="{% url 'accounts:profile' %}">Profile</a> |
+      <a href="{% url 'quizzes:quiz_list' %}">Quizzes</a> |
+      <a href="{% url 'payments:payment_list' %}">Payments</a> |
+      <a href="{% url 'core:news_list' %}">News</a> |
+      <a href="{% url 'accounts:logout' %}">Logout</a>
+    </nav>
+    <h1>E-Learning Platform</h1>
+    <h2>Courses</h2>
+    <ul>
+      {% for course in courses %}
+      <li>
+        <a href="{% url 'courses:course_detail' course.slug %}"
+          >{{ course.title }}</a
+        >
+        by {{ course.instructor.username }} ({{ course.category.name }})
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

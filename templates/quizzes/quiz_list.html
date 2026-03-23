@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Quizzes - EduLearn{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="mb-2">
+                        <i class="bi bi-question-circle text-primary me-2"></i>Quizzes
+                    </h1>
+                    <p class="text-muted mb-0">Test your knowledge and earn certificates</p>
+                </div>
+                {% if user.is_authenticated and user.role == 'instructor' %}
+                <a href="{% url 'quizzes:quiz_create' %}" class="btn btn-primary">
+                    <i class="bi bi-plus-circle me-2"></i>Create Quiz
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Stats -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-primary mb-2">
+                        <i class="bi bi-question-circle"></i>
+                    </div>
+                    <h3 class="card-title">{{ quizzes|length }}</h3>
+                    <p class="card-text text-muted">Available Quizzes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-success mb-2">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+                    <h3 class="card-title">{{ completed_quizzes|length|default:0 }}</h3>
+                    <p class="card-text text-muted">Completed</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-warning mb-2">
+                        <i class="bi bi-star"></i>
+                    </div>
+                    <h3 class="card-title">{{ average_score|floatformat:0|default:0 }}%</h3>
+                    <p class="card-text text-muted">Average Score</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="display-4 text-info mb-2">
+                        <i class="bi bi-certificate"></i>
+                    </div>
+                    <h3 class="card-title">{{ certificates_earned|length|default:0 }}</h3>
+                    <p class="card-text text-muted">Certificates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quizzes Grid -->
+    <div class="row g-4">
+        {% for quiz in quizzes %}
+        <div class="col-lg-4 col-md-6">
+            {% include 'components/quiz_card.html' with quiz=quiz show_take=true %}
+        </div>
+        {% empty %}
+        <!-- Empty State -->
+        <div class="col-12">
+            {% include 'components/empty_state.html' with icon='bi-question-circle' title='No Quizzes Available' message='Check back later for new quizzes!' %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active">
+                <span class="page-link">{{ num }}</span>
+            </li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

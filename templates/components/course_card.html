@@ -1,0 +1,67 @@
+<!-- Reusable Components for EduLearn E-Learning Platform -->
+
+<!-- Course Card Component -->
+{% comment %} Usage: {% include 'components/course_card.html' with course=course show_enroll=true %} {% endcomment %}
+<div class="card course-card h-100 shadow-sm">
+    {% if course.image %}
+        <img src="{{ course.image.url }}" class="card-img-top" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
+    {% else %}
+        <div class="card-img-top bg-primary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
+            <i class="bi bi-book display-4"></i>
+        </div>
+    {% endif %}
+
+    <div class="card-body d-flex flex-column">
+        <h5 class="card-title">
+            <a href="{% url 'courses:course_detail' course.slug %}" class="text-decoration-none text-dark">
+                {{ course.title }}
+            </a>
+        </h5>
+        <p class="card-text text-muted flex-grow-1">{{ course.description|truncatechars:120 }}</p>
+
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="text-muted">
+                <i class="bi bi-person"></i> {{ course.instructor.get_full_name|default:course.instructor.username }}
+            </small>
+            {% if course.category %}
+                <span class="badge bg-primary">{{ course.category.name }}</span>
+            {% endif %}
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <small class="text-muted">{{ course.average_rating|floatformat:1|default:"4.5" }}</small>
+                <small class="text-muted ms-2">({{ course.enrollments.count|default:0 }} students)</small>
+            </div>
+            {% if course.price %}
+                <span class="fw-bold text-primary">${{ course.price }}</span>
+            {% else %}
+                <span class="badge bg-success">Free</span>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if show_enroll %}
+    <div class="card-footer bg-transparent">
+        {% if user.is_authenticated %}
+            {% if course|enrolled:user %}
+                <a href="{% url 'courses:course_detail' course.slug %}" class="btn btn-success btn-sm w-100">
+                    <i class="bi bi-play-circle me-1"></i>Continue Learning
+                </a>
+            {% else %}
+                <form method="post" action="{% url 'courses:enroll' course.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm w-100">
+                        <i class="bi bi-plus-circle me-1"></i>Enroll Now
+                    </button>
+                </form>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'accounts:login' %}?next={% url 'courses:course_detail' course.slug %}" class="btn btn-outline-primary btn-sm w-100">
+                <i class="bi bi-box-arrow-in-right me-1"></i>Login to Enroll
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

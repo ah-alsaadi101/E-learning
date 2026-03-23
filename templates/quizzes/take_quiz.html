@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Take Quiz: {{ quiz.title }} - EduLearn{% endblock %}
+
+{% block extra_head %}
+<style>
+.quiz-timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #dc3545;
+}
+.question-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+}
+.question-number {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.75rem 1rem;
+    font-weight: bold;
+}
+.question-content {
+    padding: 1rem;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Quiz Header with Timer -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1 class="mb-2">{{ quiz.title }}</h1>
+                            <p class="text-muted mb-0">{{ quiz.description }}</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="quiz-timer" id="quiz-timer">
+                                <i class="bi bi-clock me-2"></i>
+                                <span id="time-remaining">{{ quiz.time_limit }}:00</span>
+                            </div>
+                            <small class="text-muted">Time Remaining</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted">Progress</span>
+                        <span class="text-muted" id="progress-text">Question 1 of {{ questions|length }}</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Form -->
+    <form id="quiz-form" method="post" action="{% url 'quizzes:submit_quiz' quiz.slug %}">
+        {% csrf_token %}
+
+        <!-- Questions Container -->
+        <div id="questions-container">
+            {% for question in questions %}
+            <div class="question-card card {% if forloop.first %}d-block{% else %}d-none{% endif %}" data-question="{{ forloop.counter }}">
+                <div class="question-number">
+                    Question {{ forloop.counter }} of {{ questions|length }}
+                    {% if question.points %}
+                    <span class="badge bg-primary float-end">{{ question.points }} points</span>
+                    {% endif %}
+                </div>
+                <div class="question-content">
+                    <h5 class="mb-3">{{ question.text }}</h5>
+
+                    {% if question.question_type == 'multiple_choice' %}
+                        {% for choice in question.choices.all %}
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}">
+                            <label class="form-check-label" for="choice_{{ choice.id }}">
+                                {{ choice.text }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    {% elif question.question_type == 'true_false' %}
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="question_{{ question.id }}" value="true" id="true_{{ question.id }}">
+                            <label class="form-check-label" for="true_{{ question.id }}">
+                                True
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="question_{{ question.id }}" value="false" id="false_{{ question.id }}">
+                            <label class="form-check-label" for="false_{{ question.id }}">
+                                False
+                            </label>
+                        </div>
+                    {% elif question.question_type == 'short_answer' %}
+                        <div class="mb-3">
+                            <textarea class="form-control" name="question_{{ question.id }}" rows="4" placeholder="Enter your answer here..."></textarea>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" id="prev-btn" disabled>
+                        <i class="bi bi-chevron-left me-2"></i>Previous
+                    </button>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-primary" id="review-btn">
+                            <i class="bi bi-eye me-2"></i>Review Answers
+                        </button>
+                        <button type="button" class="btn btn-primary" id="next-btn">
+                            Next<i class="bi bi-chevron-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Section (Hidden initially) -->
+        <div class="row mt-4 d-none" id="submit-section">
+            <div class="col-12">
+                <div class="card border-warning">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-warning">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Ready to Submit?
+                        </h5>
+                        <p class="card-text">Please review your answers before submitting. You cannot change them after submission.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="button" class="btn btn-outline-secondary" id="back-to-review">
+                                <i class="bi bi-arrow-left me-2"></i>Back to Review
+                            </button>
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-check-circle me-2"></i>Submit Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Review Your Answers</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="review-content">
+                    <!-- Review content will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="finish-review">Finish Review</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const questions = document.querySelectorAll('.question-card');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const reviewBtn = document.getElementById('review-btn');
+    const submitSection = document.getElementById('submit-section');
+    const backToReviewBtn = document.getElementById('back-to-review');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const reviewModal = new bootstrap.Modal(document.getElementById('reviewModal'));
+    const finishReviewBtn = document.getElementById('finish-review');
+
+    let currentQuestion = 0;
+    const totalQuestions = questions.length;
+    const timeLimit = {{ quiz.time_limit }} * 60; // Convert to seconds
+    let timeRemaining = timeLimit;
+
+    // Timer functionality
+    const timerElement = document.getElementById('time-remaining');
+    const timer = setInterval(() => {
+        timeRemaining--;
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timer);
+            document.getElementById('quiz-form').submit();
+        }
+    }, 1000);
+
+    function updateProgress() {
+        const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = `Question ${currentQuestion + 1} of ${totalQuestions}`;
+    }
+
+    function showQuestion(index) {
+        questions.forEach((q, i) => {
+            q.classList.toggle('d-block', i === index);
+            q.classList.toggle('d-none', i !== index);
+        });
+        currentQuestion = index;
+        updateProgress();
+
+        prevBtn.disabled = currentQuestion === 0;
+        nextBtn.textContent = currentQuestion === totalQuestions - 1 ? 'Finish' : 'Next';
+        nextBtn.innerHTML = currentQuestion === totalQuestions - 1 ?
+            '<i class="bi bi-check-circle me-2"></i>Finish' :
+            'Next<i class="bi bi-chevron-right ms-2"></i>';
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentQuestion > 0) {
+            showQuestion(currentQuestion - 1);
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentQuestion < totalQuestions - 1) {
+            showQuestion(currentQuestion + 1);
+        } else {
+            // Show submit section
+            document.getElementById('questions-container').classList.add('d-none');
+            document.querySelector('.d-flex.justify-content-between').classList.add('d-none');
+            submitSection.classList.remove('d-none');
+        }
+    });
+
+    reviewBtn.addEventListener('click', () => {
+        const reviewContent = document.getElementById('review-content');
+        reviewContent.innerHTML = '';
+
+        questions.forEach((question, index) => {
+            const questionNum = index + 1;
+            const questionText = question.querySelector('h5').textContent;
+            const selectedAnswer = question.querySelector('input:checked');
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'mb-3 p-3 border rounded';
+            questionDiv.innerHTML = `
+                <h6>Question ${questionNum}</h6>
+                <p class="mb-2">${questionText}</p>
+                <p class="mb-0 ${selectedAnswer ? 'text-success' : 'text-warning'}">
+                    <strong>Answer:</strong> ${selectedAnswer ? 'Provided' : 'Not answered'}
+                </p>
+            `;
+            reviewContent.appendChild(questionDiv);
+        });
+
+        reviewModal.show();
+    });
+
+    finishReviewBtn.addEventListener('click', () => {
+        reviewModal.hide();
+        document.getElementById('questions-container').classList.add('d-none');
+        document.querySelector('.d-flex.justify-content-between').classList.add('d-none');
+        submitSection.classList.remove('d-none');
+    });
+
+    backToReviewBtn.addEventListener('click', () => {
+        submitSection.classList.add('d-none');
+        document.getElementById('questions-container').classList.remove('d-none');
+        document.querySelector('.d-flex.justify-content-between').classList.remove('d-none');
+    });
+
+    // Initialize
+    updateProgress();
+});
+</script>
+{% endblock %}
